@@ -1,21 +1,28 @@
 
-import{ Routes, Route, BrowserRouter,} from 'react-router-dom';
-import { Header } from './components/header/Header';
-import { HomePage } from './page/homePage';
-
+import {Routes, Route, BrowserRouter} from "react-router-dom";
+import { Header } from "./components/header";
+import { HomePage } from "./pages/home-page";
+import { GamePage } from "./pages/game-page";
+import { OrderPage } from "./pages/order-page";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-    <Header />
-     <Routes>
-       <Route path='/' element={<HomePage />} />
-     </Routes>    
-    </div>
+    <Provider store={ store }>
+        <div className="App">
+          <Header />
+          
+          <Routes>
+              <Route path="/order" element={<HomePage />}/>
+              <Route path="/app/:title" element={<GamePage />}/>
+              <Route path="/" element={<OrderPage />}/>          
+              </Routes>
+             
+        </div>
+    </Provider>
     </BrowserRouter>
- 
-    
   );
 }
 
